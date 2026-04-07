@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
+    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
@@ -18,14 +18,13 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $fillable =['username', 'password', 'nama_lengkap', 'alamat', 'role'];
+    public function transactions() {
+        return $this->hashMany(Transaction::class);
+    }
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Get the attributes that should be cast
      *
      * @var list<string>
      */
