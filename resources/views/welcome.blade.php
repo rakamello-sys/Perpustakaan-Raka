@@ -45,52 +45,28 @@ Halo, <strong>{{ Auth::user()->nama_lengkap }}</strong>
 </span>
 <form action="{{ route('logout') }}" method="POST" class="d-inline">
 @csrf
-<button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+<button class="btn btn-danger btn-sm" type="submit">Logout</button>
 </form>
 </div>
 @endauth
-
-@guest
-<ul class="navbar-nav ms-auto">
-<li class="nav-item">
-<a class="nav-link" href="{{ route('login') }}">Login</a>
-</li>
-</ul>
-@endguest
 </div>
 </div>
 </nav>
-
-<main class="container">
+<div class="container">
 @if(session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
 {{ session('success') }}
 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
-
 @if(session('error'))
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
 {{ session('error') }}
 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
-
-@if($errors->any())
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-<ul class="mb-0">
-@foreach($errors->all() as $error)
-<li>{{ $error }}</li>
-@endforeach
-</ul>
-<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-@endif
-
 @yield('content')
-</main>
-
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-@stack('scripts')
 </body>
 </html>
